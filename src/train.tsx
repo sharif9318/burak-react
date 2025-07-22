@@ -5,4 +5,6 @@ function hasProperty(obj: any, key: string): boolean {
 }
 
 console.log(hasProperty({ davlat: "Uzbekistan", viloyat: "Buxoro" }, "viloyat")); 
-console.log(hasProperty({ davlat: "Uzbekistan", viloyat: "Buxoro" }, "tuman")); 
+console.log(hasProperty({ davlat: "Uzbekistan", viloyat: "Buxoro" }, "tuman"));
+
+export {};
