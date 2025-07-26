@@ -76,7 +76,7 @@ export function HomeNavbar() {
         <Button className="signup-bottom" variant="contained">
           SIGN UP
         </Button>
-      ) : null}
+      ) : null} 
     </Box>
   </Stack>
   <Box className="logo-frame">
