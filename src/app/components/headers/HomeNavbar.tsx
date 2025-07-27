@@ -73,7 +73,7 @@ export default function HomeNavbar() {
     </Box>
     <Box className="signup">
       {!authMember ? (
-        <Button className="signup-bottom" variant="contained">
+        <Button variant="contained" className="signup-button">
           SIGN UP
         </Button>
       ) : null} 
