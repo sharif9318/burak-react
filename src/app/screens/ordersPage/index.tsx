@@ -1,5 +1,113 @@
-import { Container } from "@mui/material";
+import { useState, SyntheticEvent } from "react";
+import { Container, Stack, Box, Tabs, Tab } from "@mui/material";
+import TabContext from "@mui/lab/TabContext";
+import TabPanel from "@mui/lab/TabPanel";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PausedOrders from "./PausedOrders";
+import ProcessOrders from "./ProcessOrders";
+import FinishedOrders from "./FinishedOrders";
+import "../../../css/order.css";
 
 export default function OrdersPage() {
-  return <Container>OrdersPage</Container>;
+  const [value, setValue] = useState("1");
+
+  const handleChange = (e: SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div className="order-page">
+      <Container className="order-container">
+        <Stack direction="row" spacing={2}>
+          {/* Left Section */}
+          <Stack className="order-left" flex={1}>
+            <TabContext value={value}>
+              <Box className="order-nav-frame">
+                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="Order Tabs"
+                    className="table_list"
+                  >
+                    <Tab label="PAUSED ORDERS" value="1" />
+                    <Tab label="PROCESS ORDERS" value="2" />
+                    <Tab label="FINISHED ORDERS" value="3" />
+                  </Tabs>
+                </Box>
+              </Box>
+
+              <Stack className="order-main-content">
+                <TabPanel value="1">
+                  <PausedOrders />
+                </TabPanel>
+                <TabPanel value="2">
+                  <ProcessOrders />
+                </TabPanel>
+                <TabPanel value="3">
+                  <FinishedOrders />
+                </TabPanel>
+              </Stack>
+            </TabContext>
+          </Stack>
+
+          {/* Right Section */}
+          <Stack className="order-right" flex={0.3}>
+            <Box className="order-info-box">
+              <Box className="member-box">
+                <div className="order-user-img">
+                  <img
+                    src="/icons/default-user.svg"
+                    className="order-user-avatar"
+                    alt="User Avatar"
+                  />
+                  <div className="order-user-icon-box">
+                    <img
+                      src="/icons/user-badge.svg"
+                      className="order-user-profit-img"
+                      alt="User Badge"
+                    />
+                  </div>
+                </div>
+                <span className="order-user-name">Martin</span>
+                <span className="order-user-profit">User</span>
+              </Box>
+              <Box className="liner" />
+              <Box className="order-user-address">
+                <LocationOnIcon className="order-user-icon" />
+                <span className="order-user-address-txt">123 Main St, City</span>
+              </Box>
+              
+            </Box>
+
+<Box className="order-info-box">
+  <Box className="payment-box">
+    <div className="payment-header">
+      <span className="payment-title">Payment Details</span>
+      <div className="card-icons">
+        <img src="/icons/visa-card.svg" alt="Visa" className="card-icon" />
+        <img src="/icons/master-card.svg" alt="MasterCard" className="card-icon" />
+        <img src="/icons/western-card.svg" alt="Amex" className="card-icon" />
+      </div>
+    </div>
+
+    <form className="payment-form">
+      <input type="text" placeholder="Cardholder Name" className="payment-input" />
+      <input type="text" placeholder="Card Number" className="payment-input" />
+      <div className="payment-row">
+        <input type="text" placeholder="MM/YY" className="payment-input small" />
+        <input type="text" placeholder="CVV" className="payment-input small" />
+      </div>
+      <button className="pay-button">PAY NOW</button>
+    </form>
+  </Box>
+</Box>
+
+
+            
+          </Stack>
+        </Stack>
+      </Container>
+    </div>
+  );
 }
