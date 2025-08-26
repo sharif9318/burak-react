@@ -5,7 +5,7 @@ import reduxLogger from "redux-logger";
 export const store = configureStore({
   //@ts-ignore
    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(reduxLogger),
-  reducer: {HomePage: HomePageReducer}, 
+  reducer: {homePage: HomePageReducer}, 
  
 });
 
