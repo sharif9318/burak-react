@@ -38,9 +38,6 @@ console.log("popular dishes:", popularDishes);
               popularDishes.map((product: Product) => {
                 const imagePath = `${serverApi}/${product.productImages[0]}`;
 
-
-
-
                 return (
                   <CssVarsProvider key={product._id}>
                     <Card className={"card"}>
