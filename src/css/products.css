@@ -19,7 +19,8 @@
   align-items: center;
 }
 
-.products-page .products .avatar-big-box {
+
+.products .avatar-big-box {
   position: relative;
 
   width: 100%;
@@ -31,7 +32,7 @@
   justify-content: space-between;
 }
 
-.products-page .products .top-text {
+.products .top-text {
   margin-top: 80px;
   position: relative;
 
@@ -51,14 +52,40 @@
 
   color: #343434;
 }
+.products .single-search-big-box {
 
-.products-page .products .search-box {
-  margin-top: 80px;
+width: 2fr;
+  position: absolute;
+  right: 0;
+  top: 40px; 
+  margin-right: 0;
+  width: 400px; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  } 
 
-  position: relative;
+.single-search-input {
+  width: 300px;
+  height: 40px;
+
+  padding-left: 20px;
+
+  border: px solid #d7b686;
+  border-radius: 15px 0px 0px 15px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #343434;
+
 }
 
-.products-page .products .dishes-filter-section {
+ .products .dishes-filter-section {
   margin-top: 65px;
 
   width: 90%;
@@ -67,8 +94,7 @@
   flex-direction: row;
   justify-content: flex-end;
 }
-
-.products-page .products .dishes-filter-section .dishes-filter-box {
+.products .dishes-filter-section .dishes-filter-box {
   width: 100%;
 
   display: flex;
@@ -92,6 +118,7 @@
 
   display: flex;
   flex-direction: row;
+
 }
 
 .products-page .products .list-category-section .product-category {
@@ -113,12 +140,13 @@
   left: 10px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+
   gap: 50px;
   z-index: 1000;
-}
+} 
 
-.products-page .products .list-category-section .category-btn {
+.products-page .products .list-category-section .category-main .category-btn {
   width: 70px;
   height: 36px;
 
@@ -583,3 +611,4 @@
   line-height: 43px;
   margin-top: 40px;
 }
+
