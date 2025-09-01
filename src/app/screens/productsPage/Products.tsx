@@ -237,7 +237,7 @@ return (
                         <div className={"product-sale"}>{sizeVolume}</div>
                         <Button className={"shop-btn"}
                         onClick={(e) => {
-                          e.stopPropagation();
+                          
                           onAdd({
                             _id: product._id,
                             quantity: 1,
@@ -246,6 +246,7 @@ return (
                             image: product.productImages[0],
                             
                           });
+                          e.stopPropagation();
                         }}
                         >
                           <img
