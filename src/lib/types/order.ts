@@ -3,7 +3,7 @@ import { Product } from "./product";
 
 
 export interface OrderItemInput {
-  orderId: string
+  orderId?: string
   itemQuantity: number;
   itemPrice: number;
   productId: string;
@@ -11,7 +11,7 @@ export interface OrderItemInput {
 
 export interface OrderItem {
   _id: string;
-  itemQuanity: number;
+  itemQuantity: number;
   itemPrice: number;
   orderId: string;
   productId: string;

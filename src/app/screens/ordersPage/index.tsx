@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -12,8 +12,10 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { setPausedOrders, setProcessOrders, setFinishedOrders } from "./slice";
 
 import "../../../css/order.css";
-import { Order } from "../../../lib/types/order";
-import { TabPanel } from "@mui/joy";
+import { Order, OrderInquiry } from "../../../lib/types/order";
+import TabPanel from "@mui/lab/TabPanel";
+import { OrderStatus } from "../../../lib/enums/order.enum";
+import OrderService from "../../services/OrderService";
 
 /**
  REDUX SLICE & SELECTOR */
@@ -24,16 +26,41 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 export default function OrdersPage() {
-    const { setPausedOrders, setProcessOrders, setFinishedOrders } =
-        actionDispatch(useDispatch());
-    const [value, setValue] = useState("1");
+  const dispatch = useDispatch();
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } = actionDispatch(dispatch);
 
-    /**
-     HANDLERS **/
+  const [value, setValue] = useState("1");
+  const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
+    page: 1,
+    limit: 5,
+    orderStatus: OrderStatus.PAUSE,
+  });
 
-    const handleChange = (e: SyntheticEvent, newValue: string) => {
-        setValue(newValue);
-    };
+  useEffect(() => {
+    const order = new OrderService();
+
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PROCESS })
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, [orderInquiry]);
+
+  /**
+   HANDLERS **/
+
+  const handleChange = (e: SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
 
   return (
     <div className="order-page">
