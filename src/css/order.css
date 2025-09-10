@@ -218,7 +218,7 @@
 }
 
 
-.order-page .order-box-scroll .orders-name-price {
+.order-page  .orders-name-price {
     position: relative;
     height: 47px;
     margin-top: 5px;
@@ -228,7 +228,7 @@
     align-items: center;
 }
 
-.order-page .order-box-scroll .orders-name-price .order-dish-img {
+.order-page .orders-name-price .order-dish-img {
   position: relative;
   width: 50px;
   height: 47px;
