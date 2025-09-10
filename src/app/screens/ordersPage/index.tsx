@@ -16,6 +16,7 @@ import { Order, OrderInquiry } from "../../../lib/types/order";
 import TabPanel from "@mui/lab/TabPanel";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
+import { useGlobals } from "../../hooks/useGlobals";
 
 /**
  REDUX SLICE & SELECTOR */
@@ -29,6 +30,7 @@ export default function OrdersPage() {
   const dispatch = useDispatch();
   const { setPausedOrders, setProcessOrders, setFinishedOrders } = actionDispatch(dispatch);
 
+  const {orderBuilder} = useGlobals();
   const [value, setValue] = useState("1");
   const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
     page: 1,
@@ -53,7 +55,7 @@ export default function OrdersPage() {
       .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
       .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
-  }, [orderInquiry]);
+  }, [orderInquiry, orderBuilder]);
 
   /**
    HANDLERS **/
@@ -84,17 +86,11 @@ export default function OrdersPage() {
                 </Box>
               </Box>
 
-              <Stack className="order-main-content">
-                <TabPanel value="1">
-                  <PausedOrders />
-                </TabPanel>
-                <TabPanel value="2">
-                  <ProcessOrders />
-                </TabPanel>
-                <TabPanel value="3">
-                  <FinishedOrders />
-                </TabPanel>
-              </Stack>
+              <Stack className={'order-main-content'}>
+    <PausedOrders setValue={setValue} />
+    <ProcessOrders setValue={setValue} />
+    <FinishedOrders />
+</Stack>
             </TabContext>
           </Stack>
 
